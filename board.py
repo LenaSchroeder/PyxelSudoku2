@@ -8,7 +8,8 @@ def rowsValid(board: Board) -> bool:
     for row in board:
         if len([val for val in row if val]) == len(
             set(val for val in row if val)
-        ):  # check if the values are all unique, not counting zeroes
+        ):
+            # check if the values are all unique, not counting zeroes
             continue
         else:
             return False
@@ -55,3 +56,16 @@ def update_board(board, row, col, value):
     new_board = deepcopy(board)
     new_board[row][col] = value
     return new_board
+
+
+def get_board_spot(mouse_x, mouse_y):
+    return min(int(mouse_x // 17), 8), min(int(mouse_y // 17), 8)
+
+
+def board_is_full(board):
+    for row in board:
+        for val in row:
+            if val == 0:
+                return False
+    else:
+        return True
