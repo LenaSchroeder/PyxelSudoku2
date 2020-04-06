@@ -181,6 +181,7 @@ puzzle_board = fill_board(puzzle)
 solution_board = fill_board(solution)
 
 rowsValid(solution_board)
+
 cols_vald(solution_board)
 
 pyxel.init(156, 183, caption="Sudoku Game")
