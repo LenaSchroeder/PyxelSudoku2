@@ -1,6 +1,21 @@
 import pyxel
 from board import Board, rowsValid, cols_vald, board_valid, update_board
 
+
+def get_board_spot(mouse_x, mouse_y):
+    return min(int(mouse_x // 17), 8), min(int(mouse_y // 17), 8)
+
+
+
+
+def board_is_full(board):
+    for row in board:
+        for val in row:
+            if val == 0:
+                return False
+    else:
+        return True
+
 class App:
     def __init__(self, puzzle_board, solution_board, is_valid, cell_selected, selected_value, game_won):
         self.puzzle_board   = puzzle_board
@@ -62,7 +77,7 @@ class App:
                 colkey=transparent_color,
             )  # copy part of image from resource file to the screen.
 
-    def update():
+    def update(self):
 
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()

@@ -5,6 +5,7 @@ import random
 from copy import deepcopy
 from typing import List, NewType
 
+from sudoku_app import App
 import pyxel
 from board import Board, rowsValid, cols_vald, board_valid, update_board
 
@@ -17,19 +18,6 @@ def generate_random_puzzle():
 
 
 
-def get_board_spot(mouse_x, mouse_y):
-    return min(int(mouse_x // 17), 8), min(int(mouse_y // 17), 8)
-
-
-
-
-def board_is_full(board):
-    for row in board:
-        for val in row:
-            if val == 0:
-                return False
-    else:
-        return True
 
 
 def format_board(current_board):
@@ -103,8 +91,10 @@ is_valid = True
 pyxel.load("my_resource.pyxres", True, True)
 image = pyxel.image(0)
 
+app = App(puzzle_board, solution_board, is_valid, cell_selected, selected_value, game_won)
+
 # start the game #
 pyxel.mouse(True)
-pyxel.run(update, draw)
+pyxel.run(app.update, app.draw)
 
 print("That was fun, why don't we play again?")
